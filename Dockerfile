@@ -12,6 +12,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.version=$APP_VERSION" \
 FROM centos:7 
 
 ENV MGOB_USER=mgob
+ENV HOME /var/tmp
 
 LABEL org.label-schema.name="mgob" \
       org.label-schema.description="MongoDB backup automation tool" \
