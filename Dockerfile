@@ -22,7 +22,7 @@ LABEL org.label-schema.name="mgob" \
 
 RUN yum install -y epel-release && yum install -y python-pip mongodb ca-certificates && useradd -ms /bin/bash mgob && chmod g+w /etc/passwd
 
-RUN if [ `id -u` -ge 10000 ]; then cat /etc/passwd | sed -e "s/^$NB_USER:/builder:/" > /tmp/passwd; echo "$NB_USER:x:`id -u`:`id -g`:,,,:/home/$NB_USER:/bin/bash" >> /tmp/passwd; cat /tmp/passwd > /etc/passwd; rm /tmp/passwd; fi
+RUN if [ `id -u` -ge 10000 ]; then cat /etc/passwd | sed -e "s/^$MGOB_USER:/builder:/" > /tmp/passwd; echo "$MGOB_USER:x:`id -u`:`id -g`:,,,:/home/$MGOB_USER:/bin/bash" >> /tmp/passwd; cat /tmp/passwd > /etc/passwd; rm /tmp/passwd; fi
 
 RUN curl -o mc  https://dl.minio.io/client/mc/release/linux-amd64/mc && mv mc /usr/bin && chmod 755 /usr/bin/mc
 
