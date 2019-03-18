@@ -11,6 +11,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.version=$APP_VERSION" \
 
 FROM centos:7 
 
+ENV MGOB_USER=mgob
+
 LABEL org.label-schema.name="mgob" \
       org.label-schema.description="MongoDB backup automation tool" \
       org.label-schema.url="https://github.com/stefanprodan/mgob" \
@@ -18,7 +20,9 @@ LABEL org.label-schema.name="mgob" \
       org.label-schema.vendor="stefanprodan.com" \
       org.label-schema.schema-version="1.0"
 
-RUN yum install -y epel-release && yum install -y python-pip mongodb ca-certificates && useradd -ms /bin/bash mgob 
+RUN yum install -y epel-release && yum install -y python-pip mongodb ca-certificates && useradd -ms /bin/bash mgob && chmod g+w /etc/passwd
+
+RUN if [ `id -u` -ge 10000 ]; then cat /etc/passwd | sed -e "s/^$NB_USER:/builder:/" > /tmp/passwd; echo "$NB_USER:x:`id -u`:`id -g`:,,,:/home/$NB_USER:/bin/bash" >> /tmp/passwd; cat /tmp/passwd > /etc/passwd; rm /tmp/passwd; fi
 
 RUN curl -o mc  https://dl.minio.io/client/mc/release/linux-amd64/mc && mv mc /usr/bin && chmod 755 /usr/bin/mc
 
