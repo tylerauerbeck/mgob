@@ -18,9 +18,7 @@ LABEL org.label-schema.name="mgob" \
       org.label-schema.vendor="stefanprodan.com" \
       org.label-schema.schema-version="1.0"
 
-RUN yum install -y epel-release && \
-    yum install -y python-pip mongodb ca-certificates &&
-    useradd -ms /bin/bash mgob 
+RUN yum install -y epel-release && yum install -y python-pip mongodb ca-certificates && useradd -ms /bin/bash mgob 
 
 RUN curl -o mc  https://dl.minio.io/client/mc/release/linux-amd64/mc && mv mc /usr/bin && chmod 755 /usr/bin/mc
 
