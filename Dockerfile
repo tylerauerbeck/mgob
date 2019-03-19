@@ -32,7 +32,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.schema-version="1.0"
 
 RUN apk add --no-cache ca-certificates mongodb-tools=${MONGODB_TOOLS_VERSION}
-#ADD https://dl.minio.io/client/mc/release/linux-amd64/mc /usr/bin
 RUN wget -P /usr/bin https://dl.minio.io/client/mc/release/linux-amd64/mc && chmod 755 /usr/bin/mc
 
 WORKDIR /var/tmp
@@ -50,7 +49,6 @@ RUN apk --no-cache add \
     && curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
     tar xzf google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
     rm google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
-    ln -s /lib /lib64 && \
     gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true && \
     gcloud config set metrics/environment github_docker_image && \
