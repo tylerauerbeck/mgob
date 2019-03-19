@@ -32,7 +32,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.schema-version="1.0"
 
 RUN apk add --no-cache ca-certificates mongodb-tools=${MONGODB_TOOLS_VERSION}
-ADD https://dl.minio.io/client/mc/release/linux-amd64/mc /usr/bin
+#ADD https://dl.minio.io/client/mc/release/linux-amd64/mc /usr/bin
+RUN curl -o mc  https://dl.minio.io/client/mc/release/linux-amd64/mc && mv mc /usr/bin && chmod 755 /usr/bin/mc
 RUN chmod u+x /usr/bin/mc
 
 WORKDIR /var/tmp
