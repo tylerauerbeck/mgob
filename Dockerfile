@@ -46,9 +46,9 @@ RUN apk --no-cache add \
         libc6-compat \
         openssh-client \
         git \
-    && curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
-    tar xzf google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
-    rm google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    && curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-235.0.0-linux-x86_64.tar.gz && \
+    tar xzf google-cloud-sdk-235.0.0-linux-x86_64.tar.gz && \
+    rm google-cloud-sdk-235.0.0-linux-x86_64.tar.gz && \
     gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true && \
     gcloud config set metrics/environment github_docker_image && \
