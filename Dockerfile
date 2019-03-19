@@ -19,6 +19,7 @@ ENV MONGODB_TOOLS_VERSION 4.0.5-r0
 ENV GOOGLE_CLOUD_SDK_VERSION 235.0.0
 ENV AZURE_CLI_VERSION 2.0.58
 ENV PATH /root/google-cloud-sdk/bin:$PATH
+ENV HOME /var/tmp
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="mgob" \
@@ -34,7 +35,7 @@ RUN apk add --no-cache ca-certificates mongodb-tools=${MONGODB_TOOLS_VERSION}
 ADD https://dl.minio.io/client/mc/release/linux-amd64/mc /usr/bin
 RUN chmod u+x /usr/bin/mc
 
-WORKDIR /root/
+WORKDIR /var/tmp
 
 #install gcloud
 # https://github.com/GoogleCloudPlatform/cloud-sdk-docker/blob/69b7b0031d877600a9146c1111e43bc66b536de7/alpine/Dockerfile
