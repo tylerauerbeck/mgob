@@ -66,4 +66,6 @@ COPY --from=0 /go/src/github.com/stefanprodan/mgob/mgob .
 
 VOLUME ["/config", "/storage", "/tmp", "/data"]
 
+USER 1001
+
 ENTRYPOINT [ "./mgob" ]
